@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DAL.Services
+namespace DAL
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
