@@ -21,5 +21,10 @@ namespace DAL.Services
                 .OrderBy(brand => brand.Name)
                 .ToList();
         }
+
+        public Brand GetBrandById(int id)
+        {
+            return FindByCondition(b => b.Id == id).FirstOrDefault();
+        }
     }
 }
