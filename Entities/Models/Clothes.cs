@@ -23,6 +23,6 @@ namespace Entities.Models
         public int ClothesCategoryId { get; set; }
 
         [Column("gender_id")]
-        public int GenderId { get; set; }
+        public int? GenderId { get; set; }
     }
 }

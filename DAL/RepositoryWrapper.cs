@@ -22,7 +22,6 @@ namespace DAL
         private IUserRepository _user;
         private IUserRoleRepository _userRole;
 
-
         public IBrandRepository Brand
         {
             get
@@ -53,7 +52,7 @@ namespace DAL
             {
                 if (_clothes == null)
                 {
-                    _clothes  = new ClothesRepository(_repoContext);
+                    _clothes = new ClothesRepository(_repoContext);
                 }
 
                 return _clothes;

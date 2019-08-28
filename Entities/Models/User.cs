@@ -32,6 +32,6 @@ namespace Entities.Models
         public string LastName { get; set; }
 
         [Column("gender_id")]
-        public int GenderId { get; set; }
+        public int? GenderId { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DAL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 
@@ -12,16 +13,30 @@ namespace WebApi.Controllers
     public class ValuesController : ControllerBase
     {
         private ILogger _logger = LogManager.GetCurrentClassLogger();
+        private IRepositoryWrapper _repositoryWrapper;
+
+        public ValuesController(IRepositoryWrapper repositoryWrapper)
+        {
+            _repositoryWrapper = repositoryWrapper;
+        }
 
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            _logger.Info("toto");
-            _logger.Warn("tatat");
-            _logger.Debug("zozo");
-            _logger.Error("vovov");
-            return new string[] { "value1", "value2" };
+            this._logger.Debug("api/values");
+            var brand = _repositoryWrapper.Brand.FindAll();
+            var category = _repositoryWrapper.ClothesCategory.FindAll();
+            var clothes = _repositoryWrapper.Clothes.FindByCondition(c => c.Code == "BASKET");
+            var clothesSizes = _repositoryWrapper.ClothesSize.FindAll();
+            var gender = _repositoryWrapper.Gender.FindAll();
+            var reminder = _repositoryWrapper.Reminder.FindAll();
+            var role = _repositoryWrapper.Role.FindAll();
+            var size = _repositoryWrapper.Size.FindAll();
+            var user = _repositoryWrapper.User.FindAll();
+            var userRole = _repositoryWrapper.UserRole.FindAll();
+            return new JsonResult("ok");
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5

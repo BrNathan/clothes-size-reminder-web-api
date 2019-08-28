@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Entities.Models
 {
-    [Table("sloths_size")]
+    [Table("clothes_size")]
     public class ClothesSize
     {
         [Key]
