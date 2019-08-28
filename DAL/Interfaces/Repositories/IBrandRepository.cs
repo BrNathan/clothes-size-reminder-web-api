@@ -7,5 +7,6 @@ namespace DAL.Interfaces.Repositories
 {
     public interface IBrandRepository: IRepositoryBase<Brand>
     {
+        IEnumerable<Brand> GetAllBrands();
     }
 }

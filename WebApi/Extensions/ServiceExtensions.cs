@@ -1,5 +1,5 @@
-﻿using DAL;
-using DAL.Interfaces;
+﻿using BLL;
+using BLL.Interfaces;
 using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;

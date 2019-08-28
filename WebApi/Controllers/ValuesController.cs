@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DAL.Interfaces;
+using BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 

@@ -1,4 +1,4 @@
-﻿using DAL.Interfaces;
+﻿using BLL.Interfaces;
 using DAL.Interfaces.Repositories;
 using DAL.Services;
 using Entities;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL
+namespace BLL
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {
