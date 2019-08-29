@@ -24,7 +24,8 @@ namespace DAL.Services
 
         public Brand GetBrandById(int id)
         {
-            return FindByCondition(b => b.Id == id).FirstOrDefault();
+            return FindByCondition(b => b.Id == id)
+                .FirstOrDefault();
         }
     }
 }
