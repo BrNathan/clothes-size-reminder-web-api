@@ -39,5 +39,10 @@ namespace DAL.Services
                 ClothesCategory = RepositoryContext.ClothesCategories.Where(cc => cc.Id == clothes.ClothesCategoryId).FirstOrDefault()
             };
         }
+
+        public void CreateClothes(Clothes clothes)
+        {
+            this.Create(clothes);
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Entities.Models
         [Key]
         [Column("id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Column("clothes_id")]
         public int ClothesId { get; set; }

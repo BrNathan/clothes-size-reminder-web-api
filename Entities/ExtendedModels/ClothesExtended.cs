@@ -22,9 +22,16 @@ namespace Entities.ExtendedModels
 
         public ClothesExtended(Clothes clothes)
         {
-            this.Id = clothes.Id;
-            this.Code = clothes.Code;
-            this.Label = clothes.Label;
+            if (clothes.Id.HasValue)
+            {
+                this.Id = clothes.Id.Value;
+                this.Code = clothes.Code;
+                this.Label = clothes.Label;
+            }
+            else
+            {
+                throw new Exception("Cannot create ClothesExtended - the clothes id is null");
+            }
         }
     }
 }

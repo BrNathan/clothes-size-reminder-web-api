@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "ClothesById")]
         public IActionResult GetClothesById(int id)
         {
             try
@@ -76,6 +76,33 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.Error(ex, "Error in call : api/clothes/GetClothesWithDetails" + id.ToString());
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult CreateClothes([FromBody]Clothes clothes)
+        {
+            try
+            {
+                if (clothes == null)
+                {
+                    return BadRequest("Clothes object is null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid model object");
+                }
+
+                _repository.Clothes.Create(clothes);
+                _repository.Save();
+
+                return CreatedAtRoute("ClothesById", new { id = clothes.Id.Value }, clothes);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error in call : api/clothes/CreateClothes", clothes);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
