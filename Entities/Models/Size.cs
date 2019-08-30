@@ -7,7 +7,7 @@ using System.Text;
 namespace Entities.Models
 {
     [Table("size")]
-    public class Size
+    public class Size : IEntity
     {
         [Key]
         [Column("id")]

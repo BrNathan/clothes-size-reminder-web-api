@@ -7,7 +7,7 @@ using System.Text;
 namespace Entities.Models
 {
     [Table("user_role")]
-    public class UserRole
+    public class UserRole: IEntity
     {
         [Column("id")]
         [Key]

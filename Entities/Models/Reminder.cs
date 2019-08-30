@@ -7,7 +7,7 @@ using System.Text;
 namespace Entities.Models
 {
     [Table("reminder")]
-    public class Reminder
+    public class Reminder : IEntity
     {
         [Key]
         [Column("id")]
