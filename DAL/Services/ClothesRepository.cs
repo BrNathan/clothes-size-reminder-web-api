@@ -2,6 +2,7 @@
 using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.ExtendedModels;
+using Entities.Extensions;
 using Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -44,5 +45,17 @@ namespace DAL.Services
         {
             this.Create(clothes);
         }
+
+        public void UpdateClothes(Clothes dbClothes, Clothes clothes)
+        {
+            dbClothes.Map(clothes);
+            Update(dbClothes);
+        }
+
+        public void DeleteClothes(Clothes clothes)
+        {
+            Delete(clothes);
+        }
+
     }
 }

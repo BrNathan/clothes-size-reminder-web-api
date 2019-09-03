@@ -76,7 +76,7 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Error in call : api/clothes/GetClothesWithDetails" + id.ToString());
+                _logger.Error(ex, "Error in call : api/clothes/GetClothesWithDetails/" + id.ToString());
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
@@ -109,6 +109,64 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.Error(ex, "Error in call : api/clothes/CreateClothes", clothes);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateClothes(int id, [FromBody]Clothes clothes)
+        {
+            try
+            {
+                if (clothes.IsEntityNull())
+                {
+                    return BadRequest("Clothes object is null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid model object");
+                }
+
+                Clothes dbClothes = _repository.Clothes.GetClothesById(id);
+                if (dbClothes.IsEntityNull())
+                {
+                    _logger.Error($"Clothes with id: {id} not found in db");
+                    return NotFound();
+                }
+
+                _repository.Clothes.UpdateClothes(dbClothes, clothes);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error in call : api/clothes/UpdateClothes/" + id, clothes);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteClothes(int id)
+        {
+            try
+            {
+                Clothes clothes = _repository.Clothes.GetClothesById(id);
+                if (clothes.IsEntityNull())
+                {
+                    _logger.Error($"Clothes with id: {id} not found in db");
+                    return NotFound();
+                }
+
+                _repository.Clothes.DeleteClothes(clothes);
+                _repository.Save();
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error in call : api/clothes/DeleteClothes/" + id);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }
