@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BLL.Interfaces;
 using Entities.ExtendedModels;
+using Entities.Extensions;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace WebApi.Controllers
             try
             {
                 Clothes clothes = _repository.Clothes.GetClothesById(id);
-                if (clothes == null)
+                if (clothes.IsEntityNull())
                 {
                     _logger.Error($"Clothes with id: {id} not found in db");
                     return NotFound();
@@ -64,14 +65,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                ClothesExtended clothes = _repository.Clothes.GetClothesWithDetails(id);
-                if (clothes == null)
+                ClothesExtended clothesExtended = _repository.Clothes.GetClothesWithDetails(id);
+                if (clothesExtended == null)
                 {
                     _logger.Error($"Clothes with id: {id} not found in db");
                     return NotFound();
                 }
 
-                return Ok(clothes);
+                return Ok(clothesExtended);
             }
             catch (Exception ex)
             {
@@ -85,9 +86,14 @@ namespace WebApi.Controllers
         {
             try
             {
-                if (clothes == null)
+                if (clothes.IsEntityNull())
                 {
                     return BadRequest("Clothes object is null");
+                }
+
+                if (!clothes.IsEntityEmpty())
+                {
+                    return BadRequest("For create, the Id must be null");
                 }
 
                 if (!ModelState.IsValid)
