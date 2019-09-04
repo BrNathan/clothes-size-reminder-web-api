@@ -9,10 +9,22 @@ namespace Entities.Extensions
     {
         public static void Map(this Clothes dbClothes, Clothes clothes)
         {
-            dbClothes.Code = clothes.Code;
-            dbClothes.Label = clothes.Label;
-            dbClothes.GenderId = clothes.GenderId;
-            dbClothes.ClothesCategoryId = clothes.ClothesCategoryId;
+            if (clothes.Code != null)
+            {
+                dbClothes.Code = clothes.Code;
+            }
+            if (clothes.Label != null)
+            {
+                dbClothes.Label = clothes.Label;
+            }
+            if (clothes.GenderId.HasValue)
+            {
+                dbClothes.GenderId = clothes.GenderId;
+            }
+            if (clothes.ClothesCategoryId != default(int))
+            {
+                dbClothes.ClothesCategoryId = clothes.ClothesCategoryId;
+            }
         }
     }
 }
