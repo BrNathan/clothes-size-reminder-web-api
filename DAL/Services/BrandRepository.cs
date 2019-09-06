@@ -1,5 +1,6 @@
 ﻿using DAL.Interfaces.Repositories;
 using Entities;
+using Entities.Extensions;
 using Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -27,5 +28,17 @@ namespace DAL.Services
             return FindByCondition(b => b.Id == id)
                 .FirstOrDefault();
         }
+
+        public void UpdateBrand(Brand dbBrand, Brand brand)
+        {
+            dbBrand.ApplyChange(brand);
+            Update(dbBrand);
+        }
+
+        public void DeleteBrand(Brand brand)
+        {
+            Delete(brand);
+        }
+        
     }
 }

@@ -9,5 +9,7 @@ namespace DAL.Interfaces.Repositories
     {
         IEnumerable<Brand> GetAllBrands();
         Brand GetBrandById(int id);
+        void UpdateBrand(Brand dbBrand, Brand brand);
+        void DeleteBrand(Brand brand);
     }
 }

@@ -48,7 +48,7 @@ namespace DAL.Services
 
         public void UpdateClothes(Clothes dbClothes, Clothes clothes)
         {
-            dbClothes.Map(clothes);
+            dbClothes.ApplyChange(clothes);
             Update(dbClothes);
         }
 

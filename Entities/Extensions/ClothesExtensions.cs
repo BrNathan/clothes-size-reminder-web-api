@@ -7,13 +7,13 @@ namespace Entities.Extensions
 {
     public static class ClothesExtensions
     {
-        public static void Map(this Clothes dbClothes, Clothes clothes)
+        public static void ApplyChange(this Clothes dbClothes, Clothes clothes)
         {
-            if (clothes.Code != null)
+            if (!String.IsNullOrWhiteSpace(clothes.Code))
             {
                 dbClothes.Code = clothes.Code;
             }
-            if (clothes.Label != null)
+            if (!String.IsNullOrWhiteSpace(clothes.Label))
             {
                 dbClothes.Label = clothes.Label;
             }
