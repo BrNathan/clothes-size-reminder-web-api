@@ -16,11 +16,11 @@ namespace WebApi.Controllers
     public class BrandController : ControllerBase
     {
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
-        private IRepositoryWrapper _repository;
+        private IBrandService _brandService;
 
-        public BrandController(IRepositoryWrapper repository)
+        public BrandController(IBrandService brandService)
         {
-            _repository = repository;
+            _brandService = brandService;
         }
 
         [HttpGet]
@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                IEnumerable<Brand> brands = _repository.Brand.GetAllBrands();
+                IEnumerable<Brand> brands = _brandService.GetAllBrands();
                 return Ok(brands);
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                Brand brand = _repository.Brand.GetBrandById(id);
+                Brand brand = _brandService.GetBrandById(id);
                 if (brand == null)
                 {
                     _logger.Error($"Brand with id: {id} not found in db");
@@ -79,8 +79,8 @@ namespace WebApi.Controllers
                     return BadRequest("Invalid model object");
                 }
 
-                _repository.Brand.Create(brand);
-                _repository.Save();
+                _brandService.CreateBrand(brand);
+                _brandService.Save();
 
                 return CreatedAtRoute("BrandById", new { id = brand.Id.Value }, brand);
             }
@@ -106,15 +106,15 @@ namespace WebApi.Controllers
                     return BadRequest("Invalid model object");
                 }
 
-                Brand dbBrand = _repository.Brand.GetBrandById(id);
+                Brand dbBrand = _brandService.GetBrandById(id);
                 if (dbBrand.IsEntityNull())
                 {
                     _logger.Error($"Brand with id: {id} not found in db");
                     return NotFound();
                 }
 
-                _repository.Brand.UpdateBrand(dbBrand, brand);
-                _repository.Save();
+                _brandService.UpdateBrand(dbBrand, brand);
+                _brandService.Save();
 
                 return NoContent();
             }
@@ -130,15 +130,15 @@ namespace WebApi.Controllers
         {
             try
             {
-                Brand brand = _repository.Brand.GetBrandById(id);
+                Brand brand = _brandService.GetBrandById(id);
                 if (brand.IsEntityNull())
                 {
                     _logger.Error($"Brand with id: {id} not found in db");
                     return NotFound();
                 }
 
-                _repository.Brand.DeleteBrand(brand);
-                _repository.Save();
+                _brandService.DeleteBrand(brand);
+                _brandService.Save();
 
                 return NoContent();
             }

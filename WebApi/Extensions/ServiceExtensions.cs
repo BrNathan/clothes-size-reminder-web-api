@@ -48,6 +48,11 @@ namespace WebApi.Extensions
             services.AddDbContext<RepositoryContext>(o => o.UseMySql(connectionString));
         }
 
+        public static void RegisterDependencies(this IServiceCollection services)
+        {
+            DependenciesManager.RegisterDependencies(services);
+        }
+
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();

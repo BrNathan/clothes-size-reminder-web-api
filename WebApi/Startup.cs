@@ -31,7 +31,8 @@ namespace WebApi
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureMySqlContext(Configuration);
-            services.ConfigureRepositoryWrapper();
+            //services.ConfigureRepositoryWrapper();
+            services.RegisterDependencies();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
