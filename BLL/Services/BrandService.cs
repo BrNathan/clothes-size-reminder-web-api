@@ -10,43 +10,43 @@ namespace BLL.Services
 {
     public class BrandService : IBrandService
     {
-        private RepositoryContext _repositoryContext;
-        private IBrandRepository _brandRepository;
+        private readonly RepositoryContext _repositoryContext;
+        private readonly IBrandRepository _brandRepository;
 
-        public BrandService(RepositoryContext repositoryContext)
+        public BrandService(RepositoryContext repositoryContext, IBrandRepository brandRepository)
         {
             this._repositoryContext = repositoryContext;
-
+            this._brandRepository = brandRepository;
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            this._repositoryContext.SaveChanges();
         }
 
-        void IBrandService.CreateBrand(Brand brand)
+        public void CreateBrand(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandRepository.Create(brand);
         }
 
-        void IBrandService.DeleteBrand(Brand brand)
+        public void DeleteBrand(Brand brand)
         {
-            throw new NotImplementedException();
+            _brandRepository.DeleteBrand(brand);
         }
 
-        IEnumerable<Brand> IBrandService.GetAllBrands()
+        public IEnumerable<Brand> GetAllBrands()
         {
-            throw new NotImplementedException();
+            return _brandRepository.GetAllBrands();
         }
 
-        Brand IBrandService.GetBrandById(int brandId)
+        public Brand GetBrandById(int brandId)
         {
-            throw new NotImplementedException();
+            return _brandRepository.GetBrandById(brandId);
         }
 
-        void IBrandService.UpdateBrand(Brand dbBrand, Brand brand)
+        public void UpdateBrand(Brand dbBrand, Brand brand)
         {
-            throw new NotImplementedException();
+            _brandRepository.UpdateBrand(dbBrand, brand);
         }
     }
 }
