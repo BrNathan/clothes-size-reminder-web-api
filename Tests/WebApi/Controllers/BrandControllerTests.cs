@@ -16,7 +16,6 @@ namespace Tests.WebApi.Controllers
         private readonly BrandController _brandController;
         private readonly Mock<IBrandService> _mockBrandService;
 
-
         public BrandControllerTests()
         {
             _mockBrandService = new Mock<IBrandService>();
@@ -26,22 +25,68 @@ namespace Tests.WebApi.Controllers
         [Fact]
         public void GetAllBrands_WhenCalled_ReturnsOkResult()
         {
-            var okResult = this._brandController.GetAllBrands() as OkObjectResult;
-            this._mockBrandService.Verify(m => m.GetAllBrands(), Times.Once);
+            var okResult = this._brandController.GetAllBrands() as ObjectResult;
 
+            this._mockBrandService.Verify(m => m.GetAllBrands(), Times.Once);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
-            Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
         public void GetAllBrands_WhenCalled_ReturnsStatusCode500()
         {
-            this._mockBrandService.Setup(m => m.GetAllBrands()).Throws(new Exception());
+            this._mockBrandService.Setup(m => m.GetAllBrands())
+                .Throws(new Exception());
 
             var errorResult = this._brandController.GetAllBrands() as ObjectResult;
-            this._mockBrandService.Verify(m => m.GetAllBrands(), Times.Once);
 
+            this._mockBrandService.Verify(m => m.GetAllBrands(), Times.Once);
             Assert.Equal(StatusCodes.Status500InternalServerError, errorResult.StatusCode);
+        }
+
+        [Fact]
+        public void GetBrandById_WhenCalled_ReturnsOkResult()
+        {
+            this._mockBrandService.Setup(s => s.GetBrandById(It.IsAny<int>()))
+                .Returns(this.CreateMockBrand(1, "Test"));
+
+            var okResult = this._brandController.GetBrandById(It.IsAny<int>()) as ObjectResult;
+
+            this._mockBrandService.Verify(s => s.GetBrandById(It.IsAny<int>()), Times.Once);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public void GetBrandById_WhenCalled_ReturnsNotFound()
+        {
+            this._mockBrandService.Setup(s => s.GetBrandById(It.IsAny<int>()))
+                .Returns(null as Brand);
+
+            var notFoundResult = this._brandController.GetBrandById(It.IsAny<int>()) as NotFoundResult;
+
+            this._mockBrandService.Verify(s => s.GetBrandById(It.IsAny<int>()), Times.Once);
+            Assert.Equal(StatusCodes.Status404NotFound, notFoundResult.StatusCode);
+        }
+
+        [Fact]
+        public void GetBrandById_WhenCalled_ReturnsStatusCode500()
+        {
+            this._mockBrandService.Setup(s => s.GetBrandById(It.IsAny<int>()))
+                .Throws(new Exception());
+
+            var errorResult = this._brandController.GetBrandById(It.IsAny<int>()) as ObjectResult;
+
+            this._mockBrandService.Verify(s => s.GetBrandById(It.IsAny<int>()), Times.Once);
+            Assert.Equal(StatusCodes.Status500InternalServerError, errorResult.StatusCode);
+        }
+
+        private Brand CreateMockBrand(int id, string name)
+        {
+            return new Brand()
+            {
+                Id = id,
+                Name = name,
+                CorporateName = name
+            };
         }
     }
 }
