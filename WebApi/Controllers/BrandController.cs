@@ -66,7 +66,7 @@ namespace WebApi.Controllers
             {
                 if (brand.IsEntityNull())
                 {
-                    return BadRequest("Gender object is null");
+                    return BadRequest("Brand object is null");
                 }
 
                 if (!brand.IsEntityEmpty())
