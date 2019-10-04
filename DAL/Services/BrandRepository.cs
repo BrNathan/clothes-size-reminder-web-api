@@ -19,8 +19,7 @@ namespace DAL.Services
         public IEnumerable<Brand> GetAllBrands()
         {
             return FindAll()
-                .OrderBy(brand => brand.Name)
-                .ToList();
+                .OrderBy(brand => brand.Name);
         }
 
         public Brand GetBrandById(int id)
@@ -39,6 +38,5 @@ namespace DAL.Services
         {
             Delete(brand);
         }
-        
     }
 }

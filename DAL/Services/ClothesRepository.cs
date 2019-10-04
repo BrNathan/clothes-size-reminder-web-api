@@ -19,7 +19,8 @@ namespace DAL.Services
 
         public IEnumerable<Clothes> GetAllClothes()
         {
-            return this.FindAll();
+            return this.FindAll()
+                .OrderBy(clothes => clothes.Label);
         }
 
         public Clothes GetClothesById(int clothesId)

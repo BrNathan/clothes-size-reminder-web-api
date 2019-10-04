@@ -3,6 +3,7 @@ using Entities;
 using Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DAL.Services
@@ -12,5 +13,27 @@ namespace DAL.Services
         public ClothesSizeRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         { }
+
+        public IEnumerable<ClothesSize> GetAllClothesSizes()
+        {
+            return FindAll();
+        }
+
+        public ClothesSize GetClothesSizeById(int id)
+        {
+            return FindByCondition(b => b.Id == id)
+                .FirstOrDefault();
+        }
+
+        public void UpdateClothesSize(ClothesSize dbClothesSize, ClothesSize clothesSize)
+        {
+            //dbClothesSize.ApplyChange(clothesSize);
+            Update(dbClothesSize);
+        }
+
+        public void DeleteClothesSize(ClothesSize clothesSize)
+        {
+            Delete(clothesSize);
+        }
     }
 }

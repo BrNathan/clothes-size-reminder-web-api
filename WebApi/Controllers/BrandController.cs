@@ -16,7 +16,7 @@ namespace WebApi.Controllers
     public class BrandController : ControllerBase
     {
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
-        private IBrandService _brandService;
+        private readonly IBrandService _brandService;
 
         public BrandController(IBrandService brandService)
         {

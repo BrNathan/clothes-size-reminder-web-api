@@ -18,10 +18,12 @@ namespace WebApi.Controllers
     {
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private IRepositoryWrapper _repository;
+        private readonly IClothesService _clothesService;
 
-        public ClothesController(IRepositoryWrapper repository)
+
+        public ClothesController(IClothesService clothesService)
         {
-            _repository = repository;
+            _clothesService = clothesService;
         }
 
         [HttpGet]
@@ -29,7 +31,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                IEnumerable<Clothes> clothes = _repository.Clothes.GetAllClothes();
+                IEnumerable<Clothes> clothes = _clothesService.GetAllClothes();
                 return Ok(clothes);
             }
             catch (Exception ex)
@@ -44,7 +46,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                Clothes clothes = _repository.Clothes.GetClothesById(id);
+                Clothes clothes = _clothesService.GetClothesById(id);
                 if (clothes.IsEntityNull())
                 {
                     _logger.Error($"Clothes with id: {id} not found in db");
@@ -65,7 +67,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                ClothesExtended clothesExtended = _repository.Clothes.GetClothesWithDetails(id);
+                ClothesExtended clothesExtended = _clothesService.GetClothesWithDetails(id);
                 if (clothesExtended == null)
                 {
                     _logger.Error($"Clothes with id: {id} not found in db");
@@ -101,8 +103,8 @@ namespace WebApi.Controllers
                     return BadRequest("Invalid model object");
                 }
 
-                _repository.Clothes.Create(clothes);
-                _repository.Save();
+                _clothesService.CreateClothes(clothes);
+                _clothesService.Save();
 
                 return CreatedAtRoute("ClothesById", new { id = clothes.Id.Value }, clothes);
             }
@@ -128,15 +130,15 @@ namespace WebApi.Controllers
                     return BadRequest("Invalid model object");
                 }
 
-                Clothes dbClothes = _repository.Clothes.GetClothesById(id);
+                Clothes dbClothes = _clothesService.GetClothesById(id);
                 if (dbClothes.IsEntityNull())
                 {
                     _logger.Error($"Clothes with id: {id} not found in db");
                     return NotFound();
                 }
 
-                _repository.Clothes.UpdateClothes(dbClothes, clothes);
-                _repository.Save();
+                _clothesService.UpdateClothes(dbClothes, clothes);
+                _clothesService.Save();
 
                 return NoContent();
             }
@@ -152,15 +154,15 @@ namespace WebApi.Controllers
         {
             try
             {
-                Clothes clothes = _repository.Clothes.GetClothesById(id);
+                Clothes clothes = _clothesService.GetClothesById(id);
                 if (clothes.IsEntityNull())
                 {
                     _logger.Error($"Clothes with id: {id} not found in db");
                     return NotFound();
                 }
 
-                _repository.Clothes.DeleteClothes(clothes);
-                _repository.Save();
+                _clothesService.DeleteClothes(clothes);
+                _clothesService.Save();
 
                 return NoContent();
             }
