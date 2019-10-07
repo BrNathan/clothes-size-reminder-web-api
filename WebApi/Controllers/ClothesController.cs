@@ -17,9 +17,7 @@ namespace WebApi.Controllers
     public class ClothesController : ControllerBase
     {
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
-        private IRepositoryWrapper _repository;
         private readonly IClothesService _clothesService;
-
 
         public ClothesController(IClothesService clothesService)
         {
