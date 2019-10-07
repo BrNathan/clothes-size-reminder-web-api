@@ -9,14 +9,13 @@ namespace Entities.Extensions
     {
         public static void ApplyChange(this Reminder dbReminder, Reminder reminder)
         {
-            //if (!String.IsNullOrWhiteSpace(reminder.Code))
-            //{
-            //    dbReminder.Code = reminder.Code;
-            //}
-            //if (!String.IsNullOrWhiteSpace(reminder.Label))
-            //{
-            //    dbReminder.Label = reminder.Label;
-            //}
+            dbReminder.ClothesSizeId = reminder.ClothesSizeId;
+            dbReminder.BrandId = reminder.BrandId;
+            dbReminder.UserId = reminder.UserId;
+            if (!String.IsNullOrWhiteSpace(reminder.Comments))
+            {
+                dbReminder.Comments = reminder.Comments;
+            }
         }
     }
 }
