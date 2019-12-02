@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebApi.Extensions
 {
@@ -56,6 +57,18 @@ namespace WebApi.Extensions
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+        }
+
+        public static void ConfigureSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(option =>
+            {
+                option.SwaggerDoc("v1", new Info()
+                {
+                    Version = "v1",
+                    Title = "Swagger API",
+                });
+            });
         }
     }
 }
