@@ -19,5 +19,8 @@ namespace Entities.Models
 
         [Column("corporate_name")]
         public string CorporateName { get; set; }
+
+        [Column("is_validated")]
+        public bool IsValidated { get; set; }
     }
 }
