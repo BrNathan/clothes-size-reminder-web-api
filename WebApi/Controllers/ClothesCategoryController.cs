@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "ClothesCategoryById")]
         public IActionResult GetClothesCategoryById(int id)
         {
             try

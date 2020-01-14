@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "ReminderById")]
         public IActionResult GetReminderById(int id)
         {
             try

@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "SizeById")]
         public IActionResult GetSizeById(int id)
         {
             try

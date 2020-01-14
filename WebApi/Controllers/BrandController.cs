@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "BrandById")]
         public IActionResult GetBrandById(int id)
         {
             try

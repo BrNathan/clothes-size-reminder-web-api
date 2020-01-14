@@ -38,7 +38,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "RoleById")]
         public IActionResult GetRoleById(int id)
         {
             try
