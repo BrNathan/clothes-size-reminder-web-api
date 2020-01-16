@@ -91,7 +91,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateBrand(int id, [FromBody]Brand brand)
         {
             try

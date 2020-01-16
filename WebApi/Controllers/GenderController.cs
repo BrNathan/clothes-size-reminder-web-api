@@ -91,7 +91,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateGender(int id, [FromBody]Gender gender)
         {
             try

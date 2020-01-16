@@ -91,7 +91,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateClothesCategory(int id, [FromBody]ClothesCategory clothesCategory)
         {
             try

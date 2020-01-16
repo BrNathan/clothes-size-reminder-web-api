@@ -91,7 +91,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateClothesSize(int id, [FromBody]ClothesSize clothesSize)
         {
             try

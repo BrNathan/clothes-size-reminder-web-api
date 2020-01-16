@@ -91,7 +91,7 @@ namespace WebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateRole(int id, [FromBody]Role role)
         {
             try
