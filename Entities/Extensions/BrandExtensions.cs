@@ -17,6 +17,7 @@ namespace Entities.Extensions
             {
                 dbBrand.CorporateName = brand.CorporateName;
             }
+            dbBrand.IsValidated = brand.IsValidated;
         }
     }
 }

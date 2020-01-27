@@ -20,9 +20,11 @@ namespace Entities.Models
         [Column("label")]
         public string Label { get; set; }
 
+        [Required]
         [Column("clothes_category_id")]
         public int ClothesCategoryId { get; set; }
 
+        [Required]
         [Column("gender_id")]
         public int? GenderId { get; set; }
     }
