@@ -13,11 +13,13 @@ namespace Tests.WebApi.Controllers
     {
         private readonly ReminderController _reminderController;
         private readonly Mock<IReminderService> _mockReminderService;
+        private readonly Mock<IClothesSizeService> _mockClothesSizeService;
 
         public ReminderControllerTests()
         {
             _mockReminderService = new Mock<IReminderService>();
-            _reminderController = new ReminderController(_mockReminderService.Object);
+            _mockClothesSizeService = new Mock<IClothesSizeService>();
+            _reminderController = new ReminderController(_mockReminderService.Object, _mockClothesSizeService.Object);
         }
 
         #region GetAllReminders

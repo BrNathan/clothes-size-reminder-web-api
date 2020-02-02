@@ -39,6 +39,11 @@ namespace BLL.Services
             return _clothesSizeRepository.GetAllClothesSizes();
         }
 
+        public IEnumerable<ClothesSize> GetAllClothesSizesByIds(IEnumerable<int> clothesSizeIds)
+        {
+            return _clothesSizeRepository.GetAllClothesSizesByIds(clothesSizeIds);
+        }
+
         public ClothesSize GetClothesSizeById(int clothesSizeId)
         {
             return _clothesSizeRepository.GetClothesSizeById(clothesSizeId);

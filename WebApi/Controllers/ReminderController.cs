@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BLL.Interfaces;
+using Entities.ExtendedModels;
 using Entities.Extensions;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
@@ -17,10 +18,12 @@ namespace WebApi.Controllers
     {
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private readonly IReminderService _reminderService;
+        private readonly IClothesSizeService _clothesSizeService;
 
-        public ReminderController(IReminderService reminderService)
+        public ReminderController(IReminderService reminderService, IClothesSizeService clothesSizeService)
         {
             _reminderService = reminderService;
+            _clothesSizeService = clothesSizeService;
         }
 
         [HttpGet]
@@ -34,6 +37,39 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.Error(ex, "Error in call : api/reminder/GetAllReminders");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        [Route("extend/user")]
+        [HttpGet]
+        public IActionResult GetAllRemindersExtendByUser()
+        {
+            try
+            {
+                int userId = 1;
+                IEnumerable<Reminder> reminders = _reminderService.GetAllRemindersByUser(userId).ToList();
+                IEnumerable<ClothesSize> clothesSizes = _clothesSizeService.GetAllClothesSizesByIds(reminders.Select(r => r.ClothesSizeId)).ToList();
+                IEnumerable<ReminderExtended> result = reminders.Join(
+                    clothesSizes,
+                    r => r.ClothesSizeId,
+                    s => s.Id,
+                    (reminder, clothesSizes2) =>
+                    {
+                        return new ReminderExtended()
+                        {
+                            Id = reminder.Id,
+                            UserId = reminder.UserId,
+                            BrandId = reminder.BrandId,
+                            ClothesSize = clothesSizes2,
+                            Comments = reminder.Comments
+                        };
+                    }).ToList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error in call : api/reminder/GetAllRemindersExtendByUser");
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }

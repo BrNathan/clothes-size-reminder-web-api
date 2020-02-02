@@ -11,7 +11,7 @@ using NLog;
 
 namespace WebApi.Controllers
 {
-    [Route("api/clothesCategory")]
+    [Route("api/clothes-category")]
     [ApiController]
     public class ClothesCategoryController : ControllerBase
     {

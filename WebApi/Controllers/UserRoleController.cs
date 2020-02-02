@@ -11,7 +11,7 @@ using NLog;
 
 namespace WebApi.Controllers
 {
-    [Route("api/userRole")]
+    [Route("api/user-role")]
     [ApiController]
     public class UserRoleController : ControllerBase
     {

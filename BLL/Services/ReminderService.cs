@@ -39,6 +39,11 @@ namespace BLL.Services
             return _reminderRepository.GetAllReminders();
         }
 
+        public IEnumerable<Reminder> GetAllRemindersByUser(int userId)
+        {
+            return _reminderRepository.GetAllRemindersByUser(userId);
+        }
+
         public Reminder GetReminderById(int reminderId)
         {
             return _reminderRepository.GetReminderById(reminderId);

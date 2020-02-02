@@ -19,6 +19,11 @@ namespace DAL.Services
             return FindAll();
         }
 
+        public IEnumerable<ClothesSize> GetAllClothesSizesByIds(IEnumerable<int> clothesSizeIds)
+        {
+            return FindByCondition(cs => cs.Id.HasValue && clothesSizeIds.Contains(cs.Id.Value));
+        }
+
         public ClothesSize GetClothesSizeById(int id)
         {
             return FindByCondition(b => b.Id == id)

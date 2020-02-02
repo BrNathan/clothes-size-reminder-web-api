@@ -20,6 +20,11 @@ namespace DAL.Services
             return FindAll();
         }
 
+        public IEnumerable<Reminder> GetAllRemindersByUser(int userId)
+        {
+            return FindByCondition(r => r.UserId == userId);
+        }
+
         public Reminder GetReminderById(int id)
         {
             return FindByCondition(b => b.Id == id)
