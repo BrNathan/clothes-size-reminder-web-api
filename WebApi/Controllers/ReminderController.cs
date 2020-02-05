@@ -127,6 +127,59 @@ namespace WebApi.Controllers
             }
         }
 
+        [Route("extend")]
+        [HttpPost]
+        public IActionResult CreateReminderExtended([FromBody]ReminderExtended reminderExtend)
+        {
+            try
+            {
+                if (reminderExtend.IsEntityNull())
+                {
+                    return BadRequest("Reminder object is null");
+                }
+                if (reminderExtend.ClothesSize.IsEntityNull())
+                {
+                    return BadRequest("Reminder.ClothesSize object is null");
+                }
+
+                if (!reminderExtend.IsEntityEmpty())
+                {
+                    return BadRequest("For create, the Reminder.Id must be null");
+                }
+                if (!reminderExtend.ClothesSize.IsEntityEmpty())
+                {
+                    return BadRequest("For create, the Reminder.ClothesSize.Id must be null");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid model object");
+                }
+
+                _clothesSizeService.CreateClothesSize(reminderExtend.ClothesSize);
+                _clothesSizeService.Save();
+
+                Reminder reminder = new Reminder()
+                {
+                    Id = reminderExtend.Id,
+                    BrandId = reminderExtend.BrandId,
+                    Comments = reminderExtend.Comments,
+                    UserId = reminderExtend.UserId,
+                    ClothesSizeId = reminderExtend.ClothesSize.Id.Value
+                };
+
+                _reminderService.CreateReminder(reminder);
+                _reminderService.Save();
+
+                return CreatedAtRoute("ReminderById", new { id = reminder.Id.Value }, reminder);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error in call : api/reminder/CreateReminder", reminderExtend);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
         [HttpPut("{id}")]
         public IActionResult UpdateReminder(int id, [FromBody]Reminder reminder)
         {

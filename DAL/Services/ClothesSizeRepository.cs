@@ -24,6 +24,11 @@ namespace DAL.Services
             return FindByCondition(cs => cs.Id.HasValue && clothesSizeIds.Contains(cs.Id.Value));
         }
 
+        public ClothesSize GetClothesSizeBySizeIdAndClothesId(int sizeId, int clothesId)
+        {
+            return FindByCondition(cs => cs.SizeId == sizeId && cs.ClothesId == clothesId).FirstOrDefault();
+        }
+
         public ClothesSize GetClothesSizeById(int id)
         {
             return FindByCondition(b => b.Id == id)

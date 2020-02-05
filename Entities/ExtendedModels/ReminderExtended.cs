@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Entities.ExtendedModels
 {
-    public class ReminderExtended
+    public class ReminderExtended : IEntity
     {
         public int? Id { get; set; }
 

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace BLL.Services
 {
-    public class ClothesSizeService: IClothesSizeService
+    public class ClothesSizeService : IClothesSizeService
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly IClothesSizeRepository _clothesSizeRepository;
@@ -26,7 +26,15 @@ namespace BLL.Services
 
         public void CreateClothesSize(ClothesSize clothesSize)
         {
-            _clothesSizeRepository.Create(clothesSize);
+            var existingClothesSize = _clothesSizeRepository.GetClothesSizeBySizeIdAndClothesId(clothesSize.SizeId, clothesSize.ClothesId);
+            if (existingClothesSize == null)
+            {
+                _clothesSizeRepository.Create(clothesSize);
+            }
+            else
+            {
+                clothesSize.Id = existingClothesSize.Id;
+            }
         }
 
         public void DeleteClothesSize(ClothesSize clothesSize)
