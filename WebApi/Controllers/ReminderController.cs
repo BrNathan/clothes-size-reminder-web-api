@@ -171,7 +171,9 @@ namespace WebApi.Controllers
                 _reminderService.CreateReminder(reminder);
                 _reminderService.Save();
 
-                return CreatedAtRoute("ReminderById", new { id = reminder.Id.Value }, reminder);
+                reminderExtend.Id = reminder.Id.Value;
+
+                return CreatedAtRoute("ReminderById", new { id = reminderExtend.Id }, reminderExtend);
             }
             catch (Exception ex)
             {
