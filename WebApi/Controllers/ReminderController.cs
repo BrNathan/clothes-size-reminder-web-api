@@ -62,7 +62,8 @@ namespace WebApi.Controllers
                             UserId = reminder.UserId,
                             BrandId = reminder.BrandId,
                             ClothesSize = clothesSizes2,
-                            Comments = reminder.Comments
+                            Comments = reminder.Comments,
+                            CreationDate = reminder.CreationDate
                         };
                     }).ToList();
                 return Ok(result);
@@ -172,6 +173,7 @@ namespace WebApi.Controllers
                 _reminderService.Save();
 
                 reminderExtend.Id = reminder.Id.Value;
+                reminderExtend.CreationDate = reminder.CreationDate;
 
                 return CreatedAtRoute("ReminderById", new { id = reminderExtend.Id }, reminderExtend);
             }
@@ -212,6 +214,59 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 _logger.Error(ex, "Error in call : api/reminder/UpdateReminder/" + id, reminder);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
+            }
+        }
+
+        [HttpPut("extend/{id}")]
+        public IActionResult UpdateReminderExtended(int id, [FromBody]ReminderExtended reminderExtend)
+        {
+            try
+            {
+                if (reminderExtend.IsEntityNull())
+                {
+                    return BadRequest("Reminder object is null");
+                }
+                if (reminderExtend.ClothesSize.IsEntityNull())
+                {
+                    return BadRequest("Reminder.ClothesSize object is null");
+                }
+
+
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest("Invalid model object");
+                }
+
+                Reminder dbReminder = _reminderService.GetReminderById(id);
+                if (dbReminder.IsEntityNull())
+                {
+                    _logger.Error($"Reminder with id: {id} not found in db");
+                    return NotFound();
+                }
+
+                _clothesSizeService.CreateClothesSize(reminderExtend.ClothesSize);
+                _clothesSizeService.Save();
+
+                Reminder reminder = new Reminder()
+                {
+                    Id = reminderExtend.Id,
+                    BrandId = reminderExtend.BrandId,
+                    Comments = reminderExtend.Comments,
+                    UserId = reminderExtend.UserId,
+                    ClothesSizeId = reminderExtend.ClothesSize.Id.Value
+                };
+
+                _reminderService.UpdateReminder(dbReminder, reminder);
+                _reminderService.Save();
+
+                reminderExtend.CreationDate = dbReminder.CreationDate;
+
+                return Ok(reminderExtend);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error in call : api/reminder/UpdateReminderExtended/" + id, reminderExtend);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error");
             }
         }

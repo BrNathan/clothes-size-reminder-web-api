@@ -37,6 +37,11 @@ namespace DAL.Services
             Update(dbReminder);
         }
 
+        public void CreateReminder(Reminder reminder)
+        {
+            Create(reminder);
+        }
+
         public void DeleteReminder(Reminder reminder)
         {
             Delete(reminder);

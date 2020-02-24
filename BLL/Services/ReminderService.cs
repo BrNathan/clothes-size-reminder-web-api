@@ -26,7 +26,7 @@ namespace BLL.Services
 
         public void CreateReminder(Reminder reminder)
         {
-            _reminderRepository.Create(reminder);
+            _reminderRepository.CreateReminder(reminder);
         }
 
         public void DeleteReminder(Reminder reminder)

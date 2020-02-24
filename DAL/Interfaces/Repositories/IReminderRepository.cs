@@ -11,6 +11,7 @@ namespace DAL.Interfaces.Repositories
         IEnumerable<Reminder> GetAllRemindersByUser(int userId);
         Reminder GetReminderById(int id);
         void UpdateReminder(Reminder dbReminder, Reminder reminder);
+        void CreateReminder(Reminder reminder);
         void DeleteReminder(Reminder reminder);
     }
 }
