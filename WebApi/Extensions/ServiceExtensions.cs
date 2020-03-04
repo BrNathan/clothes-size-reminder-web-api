@@ -27,7 +27,7 @@ namespace WebApi.Extensions
                     builder => builder.AllowAnyOrigin() // or WithOrigins("https://toto.com")
                     .AllowAnyMethod() // Or WithMethods("POST, "GET")
                     .AllowAnyHeader() // Or WithHeaders("accept", "content-type")
-                    .AllowCredentials());
+                    );
             });
         }
 
