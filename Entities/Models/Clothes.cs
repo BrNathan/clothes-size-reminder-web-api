@@ -27,5 +27,8 @@ namespace Entities.Models
         [Required]
         [Column("gender_id")]
         public int? GenderId { get; set; }
+
+        [Column("is_validated")]
+        public bool IsValidated { get; set; }
     }
 }

@@ -19,5 +19,8 @@ namespace Entities.Models
 
         [Column("label")]
         public string Label { get; set; }
+
+        [Column("is_validated")]
+        public bool IsValidated { get; set; }
     }
 }
