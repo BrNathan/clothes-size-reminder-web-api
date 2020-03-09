@@ -27,6 +27,13 @@ namespace DAL.Services
                 .FirstOrDefault();
         }
 
+        public User GetUserByEmailPaswword(string email, string passwordHash)
+        {
+            return FindByCondition(user => user.Email == email && user.Password == passwordHash)
+                .FirstOrDefault();
+        }
+
+
         public void UpdateUser(User dbUser, User user)
         {
             dbUser.ApplyChange(user);

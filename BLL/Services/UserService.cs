@@ -44,6 +44,12 @@ namespace BLL.Services
             return _userRepository.GetUserById(userId);
         }
 
+        public User GetUserByEmailPaswword(string email, string passwordHash)
+        {
+            return _userRepository.GetUserByEmailPaswword(email, passwordHash);
+        }
+
+
         public void UpdateUser(User dbUser, User user)
         {
             _userRepository.UpdateUser(dbUser, user);

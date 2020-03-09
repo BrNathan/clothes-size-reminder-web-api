@@ -10,6 +10,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Swagger;
+using Shared.Helpers;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace WebApi.Extensions
 {
@@ -63,11 +68,34 @@ namespace WebApi.Extensions
         {
             services.AddSwaggerGen(option =>
             {
-                option.SwaggerDoc("v1", new Info()
+                option.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Version = "v1",
                     Title = "Swagger API",
                 });
+            });
+        }
+
+        public static void ConfigureJwtAuthentification(this IServiceCollection services, AppSettings  appSettings)
+        {
+            var key = Encoding.ASCII.GetBytes(appSettings.JwtSecretKey);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                //IdentityModelEventSource.ShowPII = true;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
         }
     }

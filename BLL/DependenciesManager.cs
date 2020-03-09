@@ -48,6 +48,7 @@ namespace BLL
             services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<IUserRoleService, UserRoleService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

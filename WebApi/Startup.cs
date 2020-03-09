@@ -13,6 +13,8 @@ using Microsoft.Extensions.Options;
 using WebApi.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Hosting;
+using Shared.Helpers;
+using Microsoft.IdentityModel.Logging;
 
 namespace WebApi
 {
@@ -29,12 +31,19 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
             services.ConfigureCors();
             services.ConfigureIISIntegration();
             services.ConfigureMySqlContext(Configuration);
             services.RegisterDependencies();
             services.AddControllers();
             services.ConfigureSwagger();
+
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            AppSettings appSettings = appSettingsSection.Get<AppSettings>();
+            services.ConfigureJwtAuthentification(appSettings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +75,9 @@ namespace WebApi
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

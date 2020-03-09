@@ -9,6 +9,7 @@ namespace DAL.Interfaces.Repositories
     {
         IEnumerable<User> GetAllUsers();
         User GetUserById(int id);
+        User GetUserByEmailPaswword(string email, string passwordHash);
         void UpdateUser(User dbUser, User user);
         void DeleteUser(User user);
     }

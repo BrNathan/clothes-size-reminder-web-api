@@ -9,7 +9,6 @@ namespace Entities.Models
     [Table("user")]
     public class User : IEntity
     {
-
         [Column("id")]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,7 +20,7 @@ namespace Entities.Models
         public string Email { get; set; }
 
         [Column("password")]
-        [MaxLength(255, ErrorMessage = "Password can't be longer than 255 charcters")]
+        [MaxLength(255, ErrorMessage = "Password can't be longer than 255 characters")]
         public string Password { get; set; }
 
         [Column("first_name")]
@@ -34,5 +33,15 @@ namespace Entities.Models
 
         [Column("gender_id")]
         public int? GenderId { get; set; }
+
+        //public User(User user)
+        //{
+        //    this.Id = user.Id;
+        //    this.Email = user.Email;
+        //    this.Password = user.Password;
+        //    this.FirstName = user.FirstName;
+        //    this.LastName = user.LastName;
+        //    this.GenderId = user.GenderId;
+        //}
     }
 }
