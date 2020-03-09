@@ -11,6 +11,8 @@ namespace Entities.ExtendedModels
 
         public new string Password = null;
 
+        public UserAuthenticate() { }
+
         public UserAuthenticate(User user)
         {
             this.Id = user.Id;
