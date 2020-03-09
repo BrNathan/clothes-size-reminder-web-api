@@ -10,7 +10,7 @@ using WebApi.Controllers;
 using WebApi.Model;
 using Xunit;
 
-namespace Tests.WebApi.Controllers
+namespace Tests.Controllers
 {
     public class AuthControllerTests
     {

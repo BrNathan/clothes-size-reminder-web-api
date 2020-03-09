@@ -10,7 +10,7 @@ using System.Text;
 using WebApi.Controllers;
 using Xunit;
 
-namespace Tests.WebApi.Controllers
+namespace Tests.Controllers
 {
     public class ClothesControllerTests
     {
