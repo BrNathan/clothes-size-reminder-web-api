@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using WebApi.Extensions;
-using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.Hosting;
-using Shared.Helpers;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
+using Shared.Helpers;
+using WebApi.Extensions;
 
 namespace WebApi
 {

@@ -2,13 +2,11 @@
 using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class ClothesCategoryService: IClothesCategoryService
+    public class ClothesCategoryService : IClothesCategoryService
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly IClothesCategoryRepository _clothesCategoryRepository;
@@ -46,7 +44,7 @@ namespace BLL.Services
 
         public void UpdateClothesCategory(ClothesCategory dbClothesCategory, ClothesCategory clothesCategory)
         {
-            _clothesCategoryRepository.UpdateClothesCategory(dbClothesCategory, clothesCategory );
+            _clothesCategoryRepository.UpdateClothesCategory(dbClothesCategory, clothesCategory);
         }
     }
 }

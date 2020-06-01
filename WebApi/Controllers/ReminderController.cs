@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL.Interfaces;
+﻿using BLL.Interfaces;
 using Entities.ExtendedModels;
 using Entities.Extensions;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebApi.Controllers
 {
@@ -97,7 +96,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateReminder([FromBody]Reminder reminder)
+        public IActionResult CreateReminder([FromBody] Reminder reminder)
         {
             try
             {
@@ -130,7 +129,7 @@ namespace WebApi.Controllers
 
         [Route("extend")]
         [HttpPost]
-        public IActionResult CreateReminderExtended([FromBody]ReminderExtended reminderExtend)
+        public IActionResult CreateReminderExtended([FromBody] ReminderExtended reminderExtend)
         {
             try
             {
@@ -185,7 +184,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateReminder(int id, [FromBody]Reminder reminder)
+        public IActionResult UpdateReminder(int id, [FromBody] Reminder reminder)
         {
             try
             {
@@ -219,7 +218,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("extend/{id}")]
-        public IActionResult UpdateReminderExtended(int id, [FromBody]ReminderExtended reminderExtend)
+        public IActionResult UpdateReminderExtended(int id, [FromBody] ReminderExtended reminderExtend)
         {
             try
             {

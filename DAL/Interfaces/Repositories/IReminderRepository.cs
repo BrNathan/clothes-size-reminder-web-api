@@ -1,11 +1,9 @@
 ﻿using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Interfaces.Repositories
 {
-    public interface IReminderRepository: IRepositoryBase<Reminder>
+    public interface IReminderRepository : IRepositoryBase<Reminder>
     {
         IEnumerable<Reminder> GetAllReminders();
         IEnumerable<Reminder> GetAllRemindersByUser(int userId);

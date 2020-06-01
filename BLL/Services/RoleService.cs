@@ -2,13 +2,11 @@
 using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class RoleService: IRoleService
+    public class RoleService : IRoleService
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly IRoleRepository _roleRepository;

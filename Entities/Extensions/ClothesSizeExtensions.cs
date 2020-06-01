@@ -1,9 +1,4 @@
-﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities.Extensions
+﻿namespace Entities.Extensions
 {
     public static class ClothesSizeExtensions
     {

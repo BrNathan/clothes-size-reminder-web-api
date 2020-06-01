@@ -2,17 +2,15 @@
 using Entities;
 using Entities.Extensions;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DAL.Services
 {
-    public class UserRepository: RepositoryBase<User>, IUserRepository
+    public class UserRepository : RepositoryBase<User>, IUserRepository
     {
         public UserRepository(RepositoryContext repositoryContext)
-            :base(repositoryContext)
+            : base(repositoryContext)
         { }
 
         public IEnumerable<User> GetAllUsers()

@@ -2,13 +2,11 @@
 using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class ReminderService: IReminderService
+    public class ReminderService : IReminderService
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly IReminderRepository _reminderRepository;

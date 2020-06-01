@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Entities.Models
 {
     [Table("user_role")]
-    public class UserRole: IEntity
+    public class UserRole : IEntity
     {
         [Column("id")]
         [Key]

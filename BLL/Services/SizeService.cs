@@ -2,13 +2,11 @@
 using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class SizeService: ISizeService
+    public class SizeService : ISizeService
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly ISizeRepository _sizeRepository;

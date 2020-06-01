@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BLL.Interfaces;
+﻿using BLL.Interfaces;
 using Entities.Extensions;
 using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using System;
+using System.Collections.Generic;
 
 namespace WebApi.Controllers
 {
@@ -60,7 +58,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateSize([FromBody]Size size)
+        public IActionResult CreateSize([FromBody] Size size)
         {
             try
             {
@@ -92,7 +90,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateSize(int id, [FromBody]Size size)
+        public IActionResult UpdateSize(int id, [FromBody] Size size)
         {
             try
             {

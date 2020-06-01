@@ -3,13 +3,11 @@ using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.ExtendedModels;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class ClothesService: IClothesService
+    public class ClothesService : IClothesService
     {
         private readonly RepositoryContext _repositoryContext;
         private readonly IClothesRepository _clothesRepository;

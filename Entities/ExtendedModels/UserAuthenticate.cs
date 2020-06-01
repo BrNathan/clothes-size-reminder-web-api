@@ -1,11 +1,8 @@
 ﻿using Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Entities.ExtendedModels
 {
-    public class UserAuthenticate: User
+    public class UserAuthenticate : User
     {
         public string Token { get; set; }
 
@@ -26,7 +23,7 @@ namespace Entities.ExtendedModels
             this.Token = null;
         }
 
-        public UserAuthenticate(User user, string token): this(user)
+        public UserAuthenticate(User user, string token) : this(user)
         {
             this.Token = token;
         }

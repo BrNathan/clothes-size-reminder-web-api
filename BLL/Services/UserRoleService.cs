@@ -2,9 +2,7 @@
 using DAL.Interfaces.Repositories;
 using Entities;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Services
 {

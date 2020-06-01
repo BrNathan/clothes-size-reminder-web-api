@@ -2,17 +2,15 @@
 using Entities;
 using Entities.Extensions;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DAL.Services
 {
-    public class BrandRepository: RepositoryBase<Brand>, IBrandRepository
+    public class BrandRepository : RepositoryBase<Brand>, IBrandRepository
     {
         public BrandRepository(RepositoryContext repositoryContext)
-            :base(repositoryContext)
+            : base(repositoryContext)
         {
         }
 

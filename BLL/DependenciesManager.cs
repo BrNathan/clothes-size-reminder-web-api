@@ -3,9 +3,6 @@ using BLL.Services;
 using DAL.Interfaces.Repositories;
 using DAL.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BLL
 {

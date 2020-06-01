@@ -1,20 +1,15 @@
 ﻿using BLL;
 using BLL.Interfaces;
 using Entities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Swashbuckle.AspNetCore.Swagger;
-using Shared.Helpers;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shared.Helpers;
+using System.Text;
 
 namespace WebApi.Extensions
 {
@@ -76,7 +71,7 @@ namespace WebApi.Extensions
             });
         }
 
-        public static void ConfigureJwtAuthentification(this IServiceCollection services, AppSettings  appSettings)
+        public static void ConfigureJwtAuthentification(this IServiceCollection services, AppSettings appSettings)
         {
             var key = Encoding.ASCII.GetBytes(appSettings.JwtSecretKey);
             services.AddAuthentication(x =>

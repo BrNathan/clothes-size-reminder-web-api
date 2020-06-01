@@ -246,7 +246,7 @@ namespace Tests.Controllers
             {
                 Id = id,
                 SizeId = sizeId,
-                ClothesId= clotheId
+                ClothesId = clotheId
             };
         }
         #endregion

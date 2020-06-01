@@ -2,17 +2,15 @@
 using Entities;
 using Entities.Extensions;
 using Entities.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DAL.Services
 {
-    public class SizeRepository: RepositoryBase<Size>, ISizeRepository
+    public class SizeRepository : RepositoryBase<Size>, ISizeRepository
     {
         public SizeRepository(RepositoryContext repositoryContext)
-            :base(repositoryContext)
+            : base(repositoryContext)
         { }
 
         public IEnumerable<Size> GetAllSizes()
