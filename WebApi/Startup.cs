@@ -47,16 +47,16 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
 
                 //swagger only for dev mode
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "post API V1");
-                });
             }
             else
             {
                 app.UseHsts();
             }
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "post API V1");
+                });
 
             app.UseHttpsRedirection();
 

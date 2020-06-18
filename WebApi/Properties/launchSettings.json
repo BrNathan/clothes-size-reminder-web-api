@@ -26,6 +26,8 @@
     },
     "IIS Express Production": {
       "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:44330/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       }

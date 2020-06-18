@@ -342,3 +342,6 @@ healthchecksdb
 # NLog file
 internal_logs/
 logs/
+
+# Production secret Files
+appsettings.Production.json
